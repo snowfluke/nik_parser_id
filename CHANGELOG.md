@@ -1,3 +1,3 @@
-## 0.0.1
+## 0.0.6
 
-- TODO: First initial release (probably the only one release).
+- TODO: Final release (maybe).

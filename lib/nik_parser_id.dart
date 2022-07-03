@@ -24,7 +24,11 @@ class NIK {
   }
 
   String capitalize(string) {
-    return string.split(" ").map((str) => str.capitalize).join(" ");
+    return string
+        .toLowerCase()
+        .split(" ")
+        .map((str) => str[0].toUpperCase() + str.substring(1))
+        .join(" ");
   }
 
   parseNik() {
