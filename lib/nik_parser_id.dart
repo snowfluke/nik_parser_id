@@ -12,6 +12,10 @@ class NIK {
   String? getArea({required area, required endCode}) =>
       wilayah[area][nik.substring(0, endCode)];
 
+  dynamic getData(key) {
+    return data[key];
+  }
+
   Map parseNik() {
     if (nik.length != 16) {
       return sendStatus(msg: "NIK length must be 16 characters");
