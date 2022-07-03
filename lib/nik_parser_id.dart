@@ -4,11 +4,10 @@ part 'wilayah.dart';
 
 class NIK {
   final String nik;
-  final Map data = {};
+  final Map data = {"status": false, "msg": ""};
 
   NIK({required this.nik});
 
-  Map sendStatus({status = false, required msg}) => {status: status, msg: msg};
   String? getArea({required area, required endCode}) =>
       wilayah[area][nik.substring(0, endCode)];
 
@@ -16,22 +15,28 @@ class NIK {
     return data[key];
   }
 
+  dynamic setData(key, value) {
+    data[key] = value;
+  }
+
+  dynamic setMsg(value) {
+    data["msg"] = value;
+  }
+
   String capitalize(string) {
     return string.split(" ").map((str) => str.capitalize).join(" ");
   }
 
-  Map parseNik() {
-    if (nik.length != 16) {
-      return sendStatus(msg: "NIK length must be 16 characters");
-    }
+  parseNik() {
+    if (nik.length != 16) return setMsg("NIK length must be 16 characters!");
 
     var provincee = getArea(area: "provinsi", endCode: 2) ?? "";
     var city = getArea(area: "kabkot", endCode: 4) ?? "";
     dynamic districts = getArea(area: "kecamatan", endCode: 6) ?? "";
 
-    if (provincee.isEmpty) return sendStatus(msg: "Invalid provincee code");
-    if (city.isEmpty) return sendStatus(msg: "Invalid provincee code");
-    if (districts.isEmpty) return sendStatus(msg: "Invalid provincee code");
+    if (provincee.isEmpty) return setMsg("Invalid Provincee code");
+    if (city.isEmpty) return setMsg("Invalid city code");
+    if (districts.isEmpty) return setMsg("Invalid district code");
 
     data["nik"] = nik;
     data["provinsi"] = provincee;
@@ -65,6 +70,7 @@ class NIK {
     data["lahir"]["string"] = "$birthDate/$birthMonth/$birthYear";
     data["uniqcode"] = nik.substring(12, 16);
 
-    return {"status": true, "msg": data};
+    setData("status", true);
+    setMsg("Success");
   }
 }
