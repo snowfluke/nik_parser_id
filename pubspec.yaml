@@ -1,6 +1,6 @@
 name: nik_parser_id
 description: A package for parsing NIK (Nomor Induk Kewarganegaraan) a.k.a Indonesian National Identity Number
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/snowfluke/nik_parser_id
 
 environment:

@@ -16,6 +16,10 @@ class NIK {
     return data[key];
   }
 
+  String capitalize(string) {
+    return string.split(" ").map((str) => str.capitalize).join(" ");
+  }
+
   Map parseNik() {
     if (nik.length != 16) {
       return sendStatus(msg: "NIK length must be 16 characters");
@@ -43,9 +47,9 @@ class NIK {
     data["kecamatan"] = districts[0];
     data["tambahan"]["kodepos"] = districts[1];
 
-    var gender = int.parse(birthDate) > 40 ? "PEREMPUAN" : "LAKI-LAKI";
+    var gender = int.parse(birthDate) > 40 ? "Perempuan" : "Laki-Laki";
 
-    if (gender == "PEREMPUAN") {
+    if (gender == "Perempuan") {
       birthDate = (int.parse(birthDate) - 40).toString();
       birthDate = birthDate.length > 1 ? birthDate : "0$birthDate";
     }
